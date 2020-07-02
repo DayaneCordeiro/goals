@@ -1,5 +1,7 @@
 # Project requirements:
 
+### Functional requirements
+
 * The user can register on the platform;
 * The user can register a goal;
 * The user can delete a goal;
@@ -13,6 +15,8 @@
 * The user can filter the goals by in progress;
 * The user can register how much (he/she) has;
 * The user can insert new values;
+
+### Non-functional requirements
 
 * The system should show progress as a percentage;
 * The system must be built in PHP, HMTL, CSS, Jquery, Javascript and Bootstrap;

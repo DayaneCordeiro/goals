@@ -1,4 +1,4 @@
-# goals
+# goals 📑️
 
 Goals is a platform developed in PHP that aims to help users control the progress of their personal goals.
 
