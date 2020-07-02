@@ -1,4 +1,4 @@
-# Project database structure
+# Project database structure 🗂️
 
 The database was created using the MQL Workbench tool. To generate the database needed to run the application it is strictly important to execute MySQL commands in the exact order found in this document.
 
@@ -6,8 +6,11 @@ It is worth saying that a MySQL command only ends in ";" so it doesn't matter ho
 
 ### The commands
 
+~~~
 CREATE DATABASE goal;
+~~~
 
+~~~
 CREATE TABLE `goal`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(50) NOT NULL,
@@ -16,7 +19,9 @@ CREATE TABLE `goal`.`user` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+~~~
 
+~~~
 CREATE TABLE `goal`.`goals` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NOT NULL,
@@ -27,9 +32,13 @@ CREATE TABLE `goal`.`goals` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+~~~
 
+~~~
 ALTER TABLE goals add CONSTRAINT fk_01 FOREING KEY (id_user) REFERENCES user (id);
+~~~
 
+~~~
 CREATE TABLE `goal`.`goal_item` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NOT NULL,
@@ -39,5 +48,12 @@ CREATE TABLE `goal`.`goal_item` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+~~~
 
+~~~
 ALTER TABLE goal_item ADD CONSTRAINT fk_02 FOREIGN KEY (id_goal) REFERENCES goals (id);
+~~~
+
+### In the end
+When the execution of the commands is finished, you should have a database in the following format:
+![Database template](https://github.com/DayaneCordeiro/goals/blob/master/Database%20Diagram.png)
