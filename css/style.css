@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../background.jpg);
+    background-repeat: no-repeat;    	
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#container {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 170px;
+    border-radius: 10px;
+    border: #a299b2 2px solid;
+    padding: 19px;
+    background: #efeef2;
+}
+
+#loginTitle {
+    border-bottom: #a299b2 1px solid;
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+#registerLink {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#btnLogin {
+    text-align: center;
+}
