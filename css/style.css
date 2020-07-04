@@ -45,3 +45,15 @@ h1 {
 #button {
     text-align: center;
 }
+
+#interface {
+    width: 84%;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 32px;
+    border-radius: 10px;
+    border: #a299b2 2px solid;
+    padding: 19px;
+    background: #efeef2;
+}

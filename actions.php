@@ -6,13 +6,18 @@ if (!empty($_POST)) {
 
     if ($post['data']['formId']) {
         require 'Model/UserClass.php';
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
     
         switch ($post['data']['formId']) {
             case 'frmNewUser':
                 $result = UserClass::registerUser($data['data']);
+                echo $result;
+            break;
+            case 'frmLogin':
+                // echo "<pre>";
+                // print_r($data);
+                // echo "</pre>";
+
+                $result = UserClass::login($data);
                 echo $result;
             break;
 

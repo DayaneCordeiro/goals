@@ -5,15 +5,15 @@ include 'header.php';
     <div id="container">
         <h1 id="loginTitle">Welcome to Goals</h1>
 
-        <form>
+        <form id="frmLogin" method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
             <label for="inputEmail4">Username</label>
-            <input type="text" class="form-control" id="usernameLogin" name="data[user][username]" placeholder="Username">
+            <input type="text" class="form-control" id="usernameLogin" name="data[user][username]" placeholder="Username" required>
             </div>
             <div class="form-group col-md-6">
             <label for="inputPassword4">Password</label>
-            <input type="password" class="form-control" id="passwordLogin" name="data[user][password]" placeholder="Password">
+            <input type="password" class="form-control" id="passwordLogin" name="data[user][password]" placeholder="Password" required>
             </div>
         </div>
         <a href="register.php"><p  id="registerLink">Register</p></a>
@@ -25,6 +25,31 @@ include 'header.php';
     <?php
     include 'footer.php';
     ?>
+    <script>
+        $("#frmLogin").submit(function(e) {
+            e.preventDefault();
 
-    </body>
+            const form   = $('#frmLogin').serialize();
+            const formId = $(this).attr('id');
+            
+            $.ajax({
+                type: 'post',
+                url: "../actions.php",
+                data: {data: {allData: form, formId: formId}
+                },
+                success: function(result){
+                    if (result) {
+                        if (result == 'Valid.') window.location.href = "main.php";
+                        else {
+                            alert(result);
+                        }
+                    }
+                    else {
+                        alert('Login error. Try again!');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
 </html>
