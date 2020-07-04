@@ -54,6 +54,11 @@ DEFAULT CHARACTER SET = utf8;
 ALTER TABLE goal_item ADD CONSTRAINT fk_02 FOREIGN KEY (id_goal) REFERENCES goals (id);
 ~~~
 
+~~~
+ALTER TABLE `goal`.`goal_item` 
+ADD COLUMN `finish_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP() AFTER `price`;
+~~~
+
 ### In the end
 When the execution of the commands is finished, you should have a database in the following format:
 ![Database template](https://github.com/DayaneCordeiro/goals/blob/master/Database%20Diagram.png)

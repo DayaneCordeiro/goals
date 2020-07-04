@@ -17,7 +17,11 @@
 		** Return: Goal data
 		*/
 		public static function read($parameters = false) {
-            require dirname(__DIR__). '/config.php';
+			require dirname(__DIR__). '/config.php';
+			
+			// echo "<pre>";
+            // print_r($parameters);
+            // echo "</pre>";die();
             
 			$select 	= (!empty($parameters['select'])) ? $parameters['select'] : ' * ';
 			$joins 		= (!empty($parameters['joins'])) ? $parameters['joins'] : null;
@@ -25,7 +29,7 @@
 			$group 		= (!empty($parameters['group'])) ? $parameters['group'] : null;
 			$order 		= (!empty($parameters['order'])) ? $parameters['order'] : null;
 			$sql		= "SELECT".$select."FROM goals ". $joins . $conditions . $group . $order;
-            
+
 			$query = $conn->query($sql);
 			$data = array();
             $i = 0;

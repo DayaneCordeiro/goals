@@ -6,6 +6,9 @@
 		** Return: No return
 		*/
 		public static function create($data) {
+			// echo "<pre>";
+			// print_r($data);
+			// echo "</pre>";die();
             require dirname(__DIR__). '/config.php';		
 		    mysqli_query($conn,"INSERT INTO goal_item VALUES(".$data.")");
 		    mysqli_close($conn);

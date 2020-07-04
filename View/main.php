@@ -46,7 +46,7 @@ include 'header.php';
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputFinalDate">Final Date</label>
-                                    <input type="date" class="form-control" name="data[goals][password]" id="inputFinalDate" title="Enter the date you want to finish the goal">
+                                    <input type="date" class="form-control" name="data[goals][finish_date]" id="inputFinalDate" title="Enter the date you want to finish the goal">
                                 </div>
                             </div>
                         </form>
@@ -55,7 +55,7 @@ include 'header.php';
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" id="saveGoal" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@ include 'header.php';
                     </div>
 
                     <div class="modal-body">
-                        <form id="frmNewGoal" method="post">
+                        <form id="frmNewItem" method="post">
                             <div class="form-group">
                                 <label for="inputTitle">Title</label>
                                 <input type="text" class="form-control" name="data[goal_item][title]" id="inputTitle" placeholder="Enter your goal title here" required>
@@ -91,7 +91,7 @@ include 'header.php';
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputFinalDate">Final Date</label>
-                                    <input type="date" class="form-control" name="data[goal_item][password]" id="inputFinalDate" title="Enter the date you want to finish the goal">
+                                    <input type="date" class="form-control" name="data[goal_item][finish_date]" id="inputFinalDate" title="Enter the date you want to finish the goal">
                                 </div>
                             </div>
                         </form>
@@ -99,7 +99,7 @@ include 'header.php';
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" id="saveItem" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -111,33 +111,85 @@ include 'footer.php';
 ?>
 
     <script>
-        // $(document).ready(function(){
-        //     //REGISTER AJAX
-        //     $("#frmNewUser").submit(function(e){
-        //         e.preventDefault();
+        $(document).ready(function(){
+            //GOAL AJAX
+            $("#saveGoal").on('click', function(e){
+                e.preventDefault();
                 
-        //         const form = $("#frmNewUser").serialize();
-        //         const formId  = $(this).attr('id');
+                const form = $("#frmNewGoal").serialize();
+                const formId  = $(this).attr('id');
 
-        //         $.ajax({
-        //             type: 'post',
-        //             url: "../actions.php",
-        //             data: {data: {allData: form  , formId: formId}
-        //             },
-        //             success: function(result){
-        //             if (result) {
-        //                 if (result == 'User successfully registered!') {
-        //                     alert(result);
-        //                     location.replace("index.php");
-        //                 }
-        //                 else alert(result);
-        //             }
-        //             else {
-        //                 alert('Registration error, try again.');
-        //             }
-        //         }});
-        //     });
-        // });
+                $.ajax({
+                    type: 'post',
+                    url: "../actions.php",
+                    data: {data: {allData: form  , formId: formId}
+                    },
+                    success: function(result){
+                    if (result) {
+                        if (result == 'User successfully registered!') {
+                            alert(result);
+                            //DAR UM JEITO DE FECHAR O MODAL
+                        }
+                        else alert(result);
+                    }
+                    else {
+                        alert('Creation error, try again.');
+                    }
+                }});
+            });
+
+            //ITEM AJAX
+            $("#saveItem").on('click', function(e){
+                e.preventDefault();
+                
+                const form = $("#frmNewItem").serialize();
+                const formId  = $(this).attr('id');
+
+                $.ajax({
+                    type: 'post',
+                    url: "../actions.php",
+                    data: {data: {allData: form  , formId: formId}
+                    },
+                    success: function(result){
+                    if (result) {
+                        if (result == 'User successfully registered!') {
+                            alert(result);
+                            //DAR UM JEITO DE FECHAR O MODAL
+                        }
+                        else alert(result);
+                    }
+                    else {
+                        alert('Creation error, try again.');
+                    }
+                }});
+            });
+
+            //CLOSE MODAL AJAX
+            // $("#saveGoal").on('click', function(e){
+            //     e.preventDefault();
+                
+            //     const form = $("#frmNewGoal").serialize();
+            //     const formId  = $(this).attr('id');
+
+            //     $.ajax({
+            //         type: 'post',
+            //         url: "../actions.php",
+            //         data: {data: {allData: form  , formId: formId}
+            //         },
+            //         success: function(result){
+            //         if (result) {
+            //             if (result == 'User successfully registered!') {
+            //                 alert(result);
+            //                 //DAR UM JEITO DE FECHAR O MODAL
+            //             }
+            //             else alert(result);
+            //         }
+            //         else {
+            //             alert('Creation error, try again.');
+            //         }
+            //     }});
+            // });
+        });
     </script>
 </body>
 </html>
