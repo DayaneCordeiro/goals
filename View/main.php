@@ -22,7 +22,7 @@ include 'header.php';
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title" id="exampleModalLabel">New Goal 🎯️</h1>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close closeGoal" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -54,7 +54,7 @@ include 'header.php';
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary closeGoal" data-dismiss="modal">Close</button>
                         <button type="button" id="saveGoal" class="btn btn-primary">Save</button>
                     </div>
                 </div>
@@ -126,9 +126,9 @@ include 'footer.php';
                     },
                     success: function(result){
                     if (result) {
-                        if (result == 'User successfully registered!') {
+                        if (result == 'Success!') {
                             alert(result);
-                            //DAR UM JEITO DE FECHAR O MODAL
+                            location.replace("main.php");
                         }
                         else alert(result);
                     }
@@ -165,30 +165,24 @@ include 'footer.php';
             });
 
             //CLOSE MODAL AJAX
-            // $("#saveGoal").on('click', function(e){
-            //     e.preventDefault();
-                
-            //     const form = $("#frmNewGoal").serialize();
-            //     const formId  = $(this).attr('id');
+            $(".closeGoal").on('click', function(e){
+                e.preventDefault();
 
-            //     $.ajax({
-            //         type: 'post',
-            //         url: "../actions.php",
-            //         data: {data: {allData: form  , formId: formId}
-            //         },
-            //         success: function(result){
-            //         if (result) {
-            //             if (result == 'User successfully registered!') {
-            //                 alert(result);
-            //                 //DAR UM JEITO DE FECHAR O MODAL
-            //             }
-            //             else alert(result);
-            //         }
-            //         else {
-            //             alert('Creation error, try again.');
-            //         }
-            //     }});
-            // });
+                const formId  = 'closeGoal';
+
+                $.ajax({
+                    type: 'post',
+                    url: "../actions.php",
+                    data: {data: {formId: formId}
+                    },
+                    success: function(result){
+                    if (result) {
+                        if (result == 'Ok!') {
+                            location.replace("main.php");
+                        }
+                    }
+                }});
+            });
         });
     </script>
 </body>

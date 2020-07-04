@@ -4,8 +4,7 @@
 	class GoalItemClass extends GoalItemController{
         
         public static function createItem($parameters) {
-            require_once dirname(__DIR__). '/config.php';
-            require_once dirname(__DIR__). '/Controller/GoalsController.php';            
+            require_once dirname(__DIR__). '/config.php';           
 
             $goalsLineNumbers = GoalsController::read(
                 array(
@@ -14,7 +13,6 @@
             );
 
             $goalId = $goalsLineNumbers[0]['total'] + 1;
-
             $description = ($parameters['data']['goal_item']['description']) ? '"'.$parameters['data']['goal_item']['description'].'"' : "NULL";
             $finish_date = ($parameters['data']['goal_item']['finish_date']) ? '"'.$parameters['data']['goal_item']['finish_date'].'"' : "DEFAULT";
 
@@ -35,7 +33,17 @@
             GoalItemController::create($insertion);               
                 
 		    return 'Success!';
-		}
+        }
+        
+        public static function findLast() {
+            return GoalItemController::read(
+                array(
+                    'select' => 'id_goal',
+                    'order'  => ' order by id desc',
+                    'limit'  => ' limit 1'
+                )
+            );
+        }
 
 		public static function deleteItem($id) {
 			/* TO DO */

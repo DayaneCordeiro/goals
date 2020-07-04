@@ -8,6 +8,8 @@ if (!empty($_POST)) {
         require 'Model/UserClass.php';
         require 'Model/GoalsClass.php';
         require 'Model/GoalItemClass.php';
+        require_once 'Controller/GoalsController.php';
+        require_once 'Controller/GoalItemController.php';
     
         switch ($post['data']['formId']) {
             case 'frmNewUser':
@@ -24,14 +26,29 @@ if (!empty($_POST)) {
                 echo $result;
             break;
             case 'saveItem':
-                // echo "<pre>";
-                // print_r($_COOKIE);
-                // echo "</pre>";die();
                 $data['id_user'] = $_COOKIE['id'];
                 $result = GoalItemClass::createItem($data);
                 echo $result;
             break;
+            case 'closeGoal':
+                $lastGoalId = GoalItemClass::findLast()[0]['id_goal'];
+                $goal       = GoalsController::read(
+                    array(
+                        'conditions' => ' WHERE id = '.$lastGoalId
+                    )
+                );
+                // echo "<pre>";
+                // print_r($goal);
+                // echo "</pre>";die();
 
+                if (!empty($goal)) {
+                    echo "Ok!";
+                }
+                else {
+                    GoalItemController::deleteByGoalId($lastGoalId);
+                    echo "Ok!";
+                }
+            break;
             default:
             break;
         }

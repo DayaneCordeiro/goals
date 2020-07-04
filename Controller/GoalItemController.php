@@ -27,7 +27,8 @@
 			$conditions = (!empty($parameters['conditions'])) ? $parameters['conditions'] : null;
 			$group 		= (!empty($parameters['group'])) ? $parameters['group'] : null;
 			$order 		= (!empty($parameters['order'])) ? $parameters['order'] : null;
-			$sql		= "SELECT".$select."FROM goal_Item ". $joins . $conditions . $group . $order;
+			$limit 		= (!empty($parameters['limit'])) ? $parameters['limit'] : null;
+			$sql		= "SELECT ".$select." FROM goal_item ". $joins . $conditions . $group . $order . $limit;
             
 			$query = $conn->query($sql);
 			$data = array();
@@ -50,6 +51,17 @@
 		public static function delete($id) {
 			require dirname(__DIR__). '/config.php';		
 		    mysqli_query($conn,"DELETE FROM goal_item WHERE id = ".$id."");		    
+		    mysqli_close($conn);
+		}
+		
+		/*
+		** Functionality: Delete a item on database
+		** Parameters: Item id
+		** Return: No return
+		*/
+		public static function deleteByGoalId($goal_id) {
+			require dirname(__DIR__). '/config.php';		
+		    mysqli_query($conn,"DELETE FROM goal_item WHERE id_goal = ".$goal_id."");		    
 		    mysqli_close($conn);
 		}
 
