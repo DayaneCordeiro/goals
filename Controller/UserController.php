@@ -44,7 +44,7 @@
 		** Parameters: User id
 		** Return: No return
 		*/
-		public static function delete ($id) {
+		public static function delete($id) {
 			require dirname(__DIR__). '/config.php';		
 		    mysqli_query($conn,"DELETE FROM user WHERE id = ".$id."");		    
 		    mysqli_close($conn);
@@ -55,7 +55,7 @@
 		** Parameters: An array with the data to be updated
 		** Return: No return
 		*/
-		public static function update ($parameters) {
+		public static function update($parameters) {
 			require dirname(__DIR__). '/config.php';	
 		    mysqli_query($con,"UPDATE user SET ".$parameters['data']." WHERE ".$parameters['conditions']);
 			if (mysqli_affected_rows($conn) == -1) {
