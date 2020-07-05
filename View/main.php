@@ -38,7 +38,7 @@ include 'header.php';
         foreach ($goals as $goal) {
         ?>
 
-        <div class="card bg-info text-white" style="margin-top: 20px;">
+        <div class="card bg-info text-white mycard">
             <div class="card-header"><h3><?php echo $goal['title'] ?></h3></div>
             <div class="card-body">
                 <?php if($goal['description'] != NULL) { ?>

@@ -57,3 +57,10 @@ h1 {
     padding: 19px;
     background: #efeef2;
 }
+
+.mycard {
+    margin-top: 20px;
+    width: 54%;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -29,6 +29,27 @@
         
         public static function calculatesPercentage($id_goal) {
             // preco total da goal + preco de cada sub-item
+            require_once dirname(__DIR__). '/Controller/GoalItemController.php';
+
+            $sub_itens = GoalItemController::read(
+                array(
+                    'select'     => ' SUM(price) as total',
+                    'conditions' => ' WHERE id_goal = '.$id_goal
+                )
+            );
+            
+            $goal_information = GoalsController::read(
+                array(
+                    'select'     => ' price, total_money ',
+                    'conditions' => ' WHERE id = '.$id_goal
+                )
+            );
+
+            $total      = $sub_itens[0]['total'] + $goal_information[0]['price'];
+            $money      = $goal_information[0]['total_money'];
+            $percentage = ($total > 0) ? ($money * 100) / $total : 0;
+            
+            return $percentage;
         }
 
 		public static function deleteItem($id) {
