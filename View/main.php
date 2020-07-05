@@ -16,6 +16,53 @@ include 'header.php';
             New Goal
         </button>
 
+        <?php 
+        // Buscar no banco todos os goals do usuário ativo
+        require_once dirname(__DIR__). '/Controller/GoalItemController.php';
+        require_once dirname(__DIR__). '/Controller/GoalsController.php';
+        require_once dirname(__DIR__). '/Model/GoalsClass.php';
+
+        $goals = GoalsController::read(
+            array(
+                'select'     => ' * ',
+                'conditions' => ' where id_user = '.$id,
+                'group'      => ' group by id '
+            )
+        );
+
+        // echo "<pre>";
+        // print_r($goals);
+        // echo "</pre>";die();
+
+        // Fazer a estrutura de exibição dentro de um foreach
+        foreach ($goals as $goal) {
+        ?>
+
+        <div class="card bg-info text-white" style="margin-top: 20px;">
+            <div class="card-header"><h3><?php echo $goal['title'] ?></h3></div>
+            <div class="card-body">
+                <?php if($goal['description'] != NULL) { ?>
+                    <p class="card-text"><?php echo "DESCRIPTION: ".$goal['description']?></p>
+                <?php } ?>
+
+                <?php if($goal['price'] != NULL) { ?>
+                    <p class="card-text"><?php echo "PRICE: ".$goal['price']?></p>
+                <?php } ?>
+                
+                <?php if($goal['finish_date'] != NULL) { ?>
+                    <p class="card-text"><?php echo "FINAL DATE: ".$goal['finish_date']?></p>
+                <?php
+                }
+
+                $percentage = GoalsClass::calculatesPercentage($goal['id']);
+                ?>
+            </div>
+        </div>
+
+        <?php 
+        }
+        ?>
+
         <!-- Goal Modal -->
         <div class="modal fade bd-example-modal-lg" id="modalNewGoal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -47,6 +94,12 @@ include 'header.php';
                                 <div class="form-group col-md-6">
                                     <label for="inputFinalDate">Final Date</label>
                                     <input type="date" class="form-control" name="data[goals][finish_date]" id="inputFinalDate" title="Enter the date you want to finish the goal">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPrice">How much money do you already have?</label>
+                                    <input type="number" class="form-control" name="data[goals][total_money]" id="inputPrice" placeholder="This will help in calculating the percentage.">
                                 </div>
                             </div>
                         </form>

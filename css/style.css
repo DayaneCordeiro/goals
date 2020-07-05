@@ -48,7 +48,7 @@ h1 {
 
 #interface {
     width: 84%;
-    height: 600px;
+    min-height: 600px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 32px;
