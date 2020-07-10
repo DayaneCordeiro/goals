@@ -54,14 +54,13 @@
 			}
 			
 			return 'Incorrect data, check and try again.';
-		}
+		}		
 
-		public static function logoffUser() {
-			setcookie('id');
-			setcookie('nome');
-			setcookie('sobrenome');
-			setcookie('administrador');
-			setcookie('email');
-		}
+        public static function logoff() {
+            setcookie('id');
+            setcookie('username');
+
+            return 'Ok!';
+        }
 	}
 ?>

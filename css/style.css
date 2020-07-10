@@ -64,3 +64,10 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
+
+.logoff {
+    margin-left: auto;
+    width: 90px;
+    padding: 10px;
+    margin-right: 10px;
+}

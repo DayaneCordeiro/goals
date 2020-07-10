@@ -9,8 +9,13 @@ include 'header.php';
 ?>
 </head>
 <body>
+    <div class="logoff">
+        <button id="logoff" type="button" class="btn btn-danger">Logoff</button>
+    </div>
+
     <div id="interface">
         <h1 id="loginTitle">Hello <?php echo $username ?> 😎️</h1>
+        
 
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalNewGoal">
             New Goal
@@ -232,6 +237,26 @@ include 'footer.php';
                     if (result) {
                         if (result == 'Ok!') {
                             location.replace("main.php");
+                        }
+                    }
+                }});
+            });
+
+            //LOGOFF
+            $("#logoff").on('click', function(e){
+                e.preventDefault();
+
+                const formId  = 'logoff';
+
+                $.ajax({
+                    type: 'post',
+                    url: "../actions.php",
+                    data: {data: {formId: formId}
+                    },
+                    success: function(result){
+                    if (result) {
+                        if (result == 'Ok!') {
+                            location.replace("index.php");
                         }
                     }
                 }});

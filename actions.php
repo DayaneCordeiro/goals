@@ -49,6 +49,11 @@ if (!empty($_POST)) {
                     echo "Ok!";
                 }
             break;
+            case 'logoff':
+                $result = UserClass::logoff();
+                echo $result;
+            break;
+
             default:
             break;
         }
