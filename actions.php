@@ -2,7 +2,7 @@
 
 if (!empty($_POST['data']['allData'])) parse_str($_POST['data']['allData'], $data);
 if (!empty($_POST)) {
-    $post = $_POST;
+    $post = $_POST;    
 
     if ($post['data']['formId']) {
         require 'Model/UserClass.php';
@@ -37,13 +37,7 @@ if (!empty($_POST)) {
                         'conditions' => ' WHERE id = '.$lastGoalId
                     )
                 );
-                // echo "<pre>";
-                // print_r($goal);
-                // echo "</pre>";die();
-
-                if (!empty($goal)) {
-                    echo "Ok!";
-                }
+                if (!empty($goal)) echo "Ok!";
                 else {
                     GoalItemController::deleteByGoalId($lastGoalId);
                     echo "Ok!";
@@ -52,6 +46,15 @@ if (!empty($_POST)) {
             case 'logoff':
                 $result = UserClass::logoff();
                 echo $result;
+            break;
+            case 'deleteGoal':
+                // echo "<pre>";
+                // print_r($post);
+                // echo "</pre>";die();
+
+                GoalItemClass::deleteItens($post['data']['id']);
+                GoalsClass::deleteGoal($post['data']['id']);                
+                echo 'Ok!';
             break;
 
             default:

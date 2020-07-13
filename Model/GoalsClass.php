@@ -52,8 +52,8 @@
             return $percentage;
         }
 
-		public static function deleteItem($id) {
-			/* TO DO */
+		public static function deleteGoal($id) {
+			GoalsController::delete($id);
 		}
 
 		public static function editItem() {

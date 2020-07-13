@@ -24,13 +24,6 @@
                         .$finish_date.', '
                         .$goalId;
 
-            // echo $insertion;
-
-            // echo "<pre>";
-            // print_r($insertion);
-            // echo "</pre>";die();
-
-
             GoalItemController::create($insertion);               
                 
 		    return 'Success!';
@@ -46,8 +39,23 @@
             );
         }
 
-		public static function deleteItem($id) {
-			/* TO DO */
+		public static function deleteItens($idGoal) {
+            $itens = GoalItemController::read(
+                array(
+                    'select' => 'id',
+                    'conditions' => ' WHERE id_goal = '. $idGoal
+                )                
+            );
+
+            if (!empty($itens)) {
+                foreach ($itens as $item) {
+                    GoalItemController::delete($item['id']);
+                }
+            }         
+
+            // echo "<pre>";
+            // print_r($itens);
+            // echo "</pre>";die();
 		}
 
 		public static function editItem() {

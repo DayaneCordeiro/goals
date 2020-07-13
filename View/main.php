@@ -40,33 +40,37 @@ include 'header.php';
         // echo "</pre>";die();
 
         // Fazer a estrutura de exibição dentro de um foreach
-        foreach ($goals as $goal) {
         ?>
 
-        <div class="card bg-info text-white mycard">
-            <div class="card-header"><h3><?php echo $goal['title'] ?></h3></div>
-            <div class="card-body">
-                <?php if($goal['description'] != NULL) { ?>
-                    <p class="card-text"><?php echo "DESCRIPTION: ".$goal['description']?></p>
-                <?php } ?>
+        <br><br>
+        <div class="goals" style="background: yellow">
+            <?php
+            foreach ($goals as $goal) {
+            ?>
 
-                <?php if($goal['price'] != NULL) { ?>
-                    <p class="card-text"><?php echo "PRICE: ".$goal['price']?></p>
-                <?php } ?>
-                
-                <?php if($goal['finish_date'] != NULL) { ?>
-                    <p class="card-text"><?php echo "FINAL DATE: ".$goal['finish_date']?></p>
-                <?php
-                }
-
-                $percentage = GoalsClass::calculatesPercentage($goal['id']);
-                ?>
+            <div class="card mycard col-md-6" id="<?php echo $goal['id']; ?>">
+                <div class="card-header"><h3><?php echo $goal['title'] ?></h3></div>
+                <div class="card-body">
+                    <?php
+                    $percentage = GoalsClass::calculatesPercentage($goal['id']);
+                    ?>
+                    <h1 class="percentage"><?php echo $percentage.'%'; ?></h1>
+                    <div class="card_buttons">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-danger"><i id="<?php echo $goal['id'];?>" class="fa fa-trash deleteGoal" aria-hidden="true"></i></i></button>
+                    </div>
+                </div>
             </div>
+
+            <?php 
+            }
+            ?>
         </div>
 
-        <?php 
-        }
-        ?>
+        <div class="filters">
+            <h1>teste</h1>
+        </div>
 
         <!-- Goal Modal -->
         <div class="modal fade bd-example-modal-lg" id="modalNewGoal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -167,101 +171,5 @@ include 'header.php';
 <?php
 include 'footer.php';
 ?>
-
-    <script>
-        $(document).ready(function(){
-            //GOAL AJAX
-            $("#saveGoal").on('click', function(e){
-                e.preventDefault();
-                
-                const form = $("#frmNewGoal").serialize();
-                const formId  = $(this).attr('id');
-
-                $.ajax({
-                    type: 'post',
-                    url: "../actions.php",
-                    data: {data: {allData: form  , formId: formId}
-                    },
-                    success: function(result){
-                    if (result) {
-                        if (result == 'Success!') {
-                            alert(result);
-                            location.replace("main.php");
-                        }
-                        else alert(result);
-                    }
-                    else {
-                        alert('Creation error, try again.');
-                    }
-                }});
-            });
-
-            //ITEM AJAX
-            $("#saveItem").on('click', function(e){
-                e.preventDefault();
-                
-                const form = $("#frmNewItem").serialize();
-                const formId  = $(this).attr('id');
-
-                $.ajax({
-                    type: 'post',
-                    url: "../actions.php",
-                    data: {data: {allData: form  , formId: formId}
-                    },
-                    success: function(result){
-                    if (result) {
-                        if (result == 'User successfully registered!') {
-                            alert(result);
-                            //DAR UM JEITO DE FECHAR O MODAL
-                        }
-                        else alert(result);
-                    }
-                    else {
-                        alert('Creation error, try again.');
-                    }
-                }});
-            });
-
-            //CLOSE MODAL AJAX
-            $(".closeGoal").on('click', function(e){
-                e.preventDefault();
-
-                const formId  = 'closeGoal';
-
-                $.ajax({
-                    type: 'post',
-                    url: "../actions.php",
-                    data: {data: {formId: formId}
-                    },
-                    success: function(result){
-                    if (result) {
-                        if (result == 'Ok!') {
-                            location.replace("main.php");
-                        }
-                    }
-                }});
-            });
-
-            //LOGOFF
-            $("#logoff").on('click', function(e){
-                e.preventDefault();
-
-                const formId  = 'logoff';
-
-                $.ajax({
-                    type: 'post',
-                    url: "../actions.php",
-                    data: {data: {formId: formId}
-                    },
-                    success: function(result){
-                    if (result) {
-                        if (result == 'Ok!') {
-                            location.replace("index.php");
-                        }
-                    }
-                }});
-            });
-        });
-    </script>
 </body>
 </html>

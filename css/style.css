@@ -48,10 +48,10 @@ h1 {
 
 #interface {
     width: 84%;
-    min-height: 600px;
+    min-height: 550px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 32px;
+    margin-top: 15px;
     border-radius: 10px;
     border: #a299b2 2px solid;
     padding: 19px;
@@ -61,8 +61,7 @@ h1 {
 .mycard {
     margin-top: 20px;
     width: 54%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 20px;
 }
 
 .logoff {
@@ -70,4 +69,29 @@ h1 {
     width: 90px;
     padding: 10px;
     margin-right: 10px;
+}
+
+.goals {
+    width: 70%;
+    float: left;
+}
+
+.filters {
+    float: right;
+    width: 28%;
+    background: crimson;
+}
+
+.percentage {
+    text-align: center;
+    font-family: 'Galada', cursive;
+    font-size: 90pt;
+}
+
+.card_buttons {
+    margin-left: auto;
+}
+
+.fa-pencil {
+ color: white;
 }
