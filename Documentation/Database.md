@@ -59,6 +59,23 @@ ALTER TABLE `goal`.`goal_item`
 ADD COLUMN `finish_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP() AFTER `price`;
 ~~~
 
+~~~
+CREATE TABLE `goal`.`goal_id_controll` (
+  `last_goal_id` INT NULL)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+~~~
+
+~~~
+ALTER TABLE `goal`.`goal_id_controll` 
+CHANGE COLUMN `last_goal_id` `last_goal_id` INT(11) NULL DEFAULT 0 ;
+~~~
+
+~~~
+ALTER TABLE `goal`.`goal_id_controll` 
+ADD COLUMN `id_user` INT(11) NOT NULL AFTER `last_goal_id`;
+~~~
+
 ### In the end
 When the execution of the commands is finished, you should have a database in the following format:
 ![Database template](https://github.com/DayaneCordeiro/goals/blob/master/Database%20Diagram.png)

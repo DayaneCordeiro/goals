@@ -4,7 +4,7 @@
 
 RF01: The user can register on the platform; ✅️
 RF02: The user can register a goal; ✅️
-RF03: The user can delete a goal;
+RF03: The user can delete a goal; ✅️
 RF04: The user can edit a goal;
 RF05: The user can register a goal item; ✅️
 RF06: The user can delete a goal item;
