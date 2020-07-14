@@ -5,6 +5,7 @@
         
         public static function createGoal($parameters) {
             require_once dirname(__DIR__). '/config.php';
+            require_once dirname(__DIR__). '/Model/GoalIdControllClass.php';
 
             if (empty($parameters['data']['goals']['title']))
                 return "The title field is mandatory";
@@ -22,7 +23,8 @@
                         .$total_money.', '
                         .$parameters['id_user'];
 
-            GoalsController::create($insertion);               
+            GoalsController::create($insertion);
+            GoalIdControllClass::editGoalIdControll();              
                 
 		    return 'Success!';
         }

@@ -34,12 +34,7 @@ include 'header.php';
                 'group'      => ' group by id '
             )
         );
-
-        // echo "<pre>";
-        // print_r($goals);
-        // echo "</pre>";die();
-
-        // Fazer a estrutura de exibição dentro de um foreach
+        
         ?>
 
         <br><br>

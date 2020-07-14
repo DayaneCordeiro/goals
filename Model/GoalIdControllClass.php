@@ -2,20 +2,11 @@
 	require_once dirname(__DIR__). '/Controller/GoalIdControllController.php';
 	
 	class GoalIdControllClass extends GoalIdControllController {
-        
-        public static function createUserGoalIdControll($id) {
-            $insertion = '0, '.$id;
+        public static function editGoalIdControll() {
+            $lastId = GoalIdControllController::read();
+            $newId  = $lastId[0]['last_goal_id'] + 1;
 
-            GoalIdControllController::create($insertion);       
-		    return 'Success!';
-        }
-
-		public static function editGoalIdControll($id) {
-            $lastId = GoalIdControllController::read($id);
-            $data['value'] = $lastId;
-            $data['user_id'] = $id;
-
-            GoalIdControllController::update($data);
+            GoalIdControllController::update($newId);
             return '200';
         }
 	}

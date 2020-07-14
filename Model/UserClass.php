@@ -2,11 +2,7 @@
 	require_once dirname(__DIR__). '/Controller/UserController.php';
 	
 	class UserClass extends UserController{
-
-		public static function listarCadastrados() {
-			return UserController::read();
-		}
-
+		
 		public static function registerUser($parameters) {
             require_once dirname(__DIR__). '/config.php';
             

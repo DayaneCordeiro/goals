@@ -7,13 +7,9 @@
             require_once dirname(__DIR__). '/config.php';
             require_once dirname(__DIR__). '/Controller/GoalsController.php';            
 
-            $goalsLineNumbers = GoalsController::read(
-                array(
-                    'select' => ' COUNT(id) as total '
-                )
-            );
+            $goalsLastId = GoalIdControllController::read();
 
-            $goalId = $goalsLineNumbers[0]['total'] + 1;
+            $goalId = $goalsLastId[0]['last_goal_id'] + 1;
             $description = ($parameters['data']['goal_item']['description']) ? '"'.$parameters['data']['goal_item']['description'].'"' : "NULL";
             $finish_date = ($parameters['data']['goal_item']['finish_date']) ? '"'.$parameters['data']['goal_item']['finish_date'].'"' : "DEFAULT";
 

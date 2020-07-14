@@ -8,12 +8,18 @@ if (!empty($_POST)) {
         require 'Model/UserClass.php';
         require 'Model/GoalsClass.php';
         require 'Model/GoalItemClass.php';
+        require 'Model/GoalIdControllClass.php';
         require_once 'Controller/GoalsController.php';
         require_once 'Controller/GoalItemController.php';
     
         switch ($post['data']['formId']) {
             case 'frmNewUser':
                 $result = UserClass::registerUser($data['data']);
+
+                // echo "<pre>";
+                // print_r($lastUserId);
+                // echo "</pre>";die();
+
                 echo $result;
             break;
             case 'frmLogin':              
@@ -48,10 +54,6 @@ if (!empty($_POST)) {
                 echo $result;
             break;
             case 'deleteGoal':
-                // echo "<pre>";
-                // print_r($post);
-                // echo "</pre>";die();
-
                 GoalItemClass::deleteItens($post['data']['id']);
                 GoalsClass::deleteGoal($post['data']['id']);                
                 echo 'Ok!';

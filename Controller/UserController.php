@@ -24,7 +24,8 @@
 			$conditions = (!empty($parameters['conditions'])) ? $parameters['conditions'] : null;
 			$group 		= (!empty($parameters['group'])) ? $parameters['group'] : null;
 			$order 		= (!empty($parameters['order'])) ? $parameters['order'] : null;
-			$sql		= "SELECT".$select."FROM user ". $joins . $conditions . $group . $order;
+			$limit 		= (!empty($parameters['limit'])) ? $parameters['limit'] : null;
+			$sql		= "SELECT".$select."FROM user ". $joins . $conditions . $group . $order . $limit;
             
 			$query = $conn->query($sql);
 			$data = array();

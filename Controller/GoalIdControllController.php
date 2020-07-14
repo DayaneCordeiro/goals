@@ -1,25 +1,14 @@
 <?php
 	class GoalIdControllController {
 		/*
-		** Functionality: Create the goal controll id line on database
-		** Parameters: A string with the item data to be inserted
-		** Return: No return
-		*/
-		public static function create($data) {
-            require dirname(__DIR__). '/config.php';		
-		    mysqli_query($conn,"INSERT INTO goal_id_controller VALUES(".$data.")");
-		    mysqli_close($conn);
-		}
-
-		/*
 		** Functionality: Read the value saved on database
 		** Parameters: An array with the search conditions
-		** Return: User id
+		** Return: The table value
 		*/
-		public static function read($id) {
+		public static function read() {
             require dirname(__DIR__). '/config.php';
             
-			$sql		= "SELECT * FROM goal_id_controll WHERE user_id = ". $id;
+			$sql		= "SELECT * FROM goal_id_controll";
             
 			$query = $conn->query($sql);
 			$data = array();
@@ -35,24 +24,17 @@
 		}
 
 		/*
-		** Functionality: Delete the goal controll id line on database
-		** Parameters: User id
-		** Return: No return
-		*/
-		public static function delete($id) {
-			require dirname(__DIR__). '/config.php';		
-		    mysqli_query($conn,"DELETE FROM goal_id controll WHERE user_id = ".$id."");		    
-		    mysqli_close($conn);
-		}
-
-		/*
 		** Functionality: Update the goal controll id line on database
 		** Parameters: An array with the data to be updated
 		** Return: No return
 		*/
-		public static function update($parameters) {
+		public static function update($value) {
+			// echo "<pre>";
+            // print_r($value);
+			// echo "</pre>";die();
+			
 			require dirname(__DIR__). '/config.php';	
-		    mysqli_query($con,"UPDATE goal_id_controll SET ".$parameters['value']." WHERE user_id = ".$parameters['user_id']);
+		    mysqli_query($conn,"UPDATE goal_id_controll SET last_goal_id = ".$value."");
 			if (mysqli_affected_rows($conn) == -1) {
 				return mysqli_error($conn);
 			} else {

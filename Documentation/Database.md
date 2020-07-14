@@ -76,6 +76,19 @@ ALTER TABLE `goal`.`goal_id_controll`
 ADD COLUMN `id_user` INT(11) NOT NULL AFTER `last_goal_id`;
 ~~~
 
+~~~
+ALTER TABLE `goal`.`goals` 
+DROP FOREIGN KEY `fk_01`;
+ALTER TABLE `goal`.`goals` 
+DROP INDEX `fk_01` ;
+;
+~~~
+
+~~~
+ALTER TABLE `goal`.`goals` 
+CHANGE COLUMN `title` `title` VARCHAR(50) NULL ;
+~~~
+
 ### In the end
 When the execution of the commands is finished, you should have a database in the following format:
 ![Database template](https://github.com/DayaneCordeiro/goals/blob/master/Database%20Diagram.png)
