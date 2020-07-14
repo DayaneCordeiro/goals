@@ -39,9 +39,9 @@ $(document).ready(function(){
             },
             success: function(result){
             if (result) {
-                if (result == 'User successfully registered!') {
-                    alert(result);
-                    //DAR UM JEITO DE FECHAR O MODAL
+                if (result == 'Success!') {
+                    $("#modalNewItem").modal('hide');
+                    alert(`hello`);
                 }
                 else alert(result);
             }
