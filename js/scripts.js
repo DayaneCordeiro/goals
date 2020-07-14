@@ -1,5 +1,9 @@
 $(document).ready(function(){
-    //GOAL AJAX
+    /*
+    ** Functionality: Send Informations By Ajax to create a new Goal
+    ** Parameters: Event
+    ** Return: No return
+    */
     $("#saveGoal").on('click', function(e){
         e.preventDefault();
         
@@ -25,7 +29,11 @@ $(document).ready(function(){
         }});
     });
 
-    //ITEM AJAX
+    /*
+    ** Functionality: Send Informations By Ajax to creat a new Item
+    ** Parameters: Event
+    ** Return: No return
+    */
     $("#saveItem").on('click', function(e){
         e.preventDefault();
         
@@ -41,7 +49,6 @@ $(document).ready(function(){
             if (result) {
                 if (result == 'Success!') {
                     $("#modalNewItem").modal('hide');
-                    alert(`hello`);
                 }
                 else alert(result);
             }
@@ -51,7 +58,11 @@ $(document).ready(function(){
         }});
     });
 
-    //CLOSE MODAL AJAX
+    /*
+    ** Functionality: Send Informations By Ajax to close Goal Modal and refresh page
+    ** Parameters: Event
+    ** Return: No return
+    */
     $(".closeGoal").on('click', function(e){
         e.preventDefault();
 
@@ -71,7 +82,11 @@ $(document).ready(function(){
         }});
     });
 
-    //LOGOFF
+    /*
+    ** Functionality: Send Informations By Ajax to logoff user
+    ** Parameters: Event
+    ** Return: No return
+    */
     $("#logoff").on('click', function(e){
         e.preventDefault();
 
@@ -91,7 +106,11 @@ $(document).ready(function(){
         }});
     });
 
-    // DELETE GOAL
+    /*
+    ** Functionality: Send Informations By Ajax to delete a Goal
+    ** Parameters: Event
+    ** Return: No return
+    */
     $('.deleteGoal').on('click', function(e) {
         e.preventDefault();
 
@@ -117,5 +136,14 @@ $(document).ready(function(){
                 }
             }});
         }
+    });
+
+    /*
+    ** Functionality: Clear the New Item modal when it's closed
+    ** Parameters: No parameters
+    ** Return: No return
+    */
+    $('.modal').on('hidden.bs.modal', function() {
+        $('#frmNewItem')[0].reset();
     });
 });
