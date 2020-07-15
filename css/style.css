@@ -99,3 +99,16 @@ h1 {
 #inputNewValue {
     margin-right: 5px;
 }
+
+.titles {
+    color: #3f3f3f;
+}
+
+.paragraf {
+    text-align: justify;
+    margin: 20px;
+    border: 2px solid #b5b0bf;
+    padding: 11px;
+    border-radius: 10px;
+    background-color: #edebef;
+}

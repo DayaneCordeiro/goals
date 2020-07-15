@@ -46,7 +46,7 @@ include 'header.php';
                 <div class="card-header">
                     <h3 style="float: left"><?php echo $goal['title'] ?></h3>
                     <div class="card_buttons" style="float: right">
-                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-primary viewGoal"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-primary viewGoal" data-toggle="modal" data-target="#modalViewGoal"><i class="fa fa-eye" aria-hidden="true"></i></button>
                         <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-warning editGoal" data-toggle="modal" data-target="#goalEditionModal"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                         <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-danger deleteGoal"><i id="<?php echo $goal['id'];?>" class="fa fa-trash" aria-hidden="true"></i></i></button>
                     </div>
@@ -57,7 +57,6 @@ include 'header.php';
                     ?>
                     <h1 class="percentage"><?php echo number_format($percentage, 1).'%'; ?></h1>
                     <div class="form-row">
-                        <label for="inputNewValue">Add new values to this Goal</label>
                         <input type="number" class="form-control col-md-9" name="data[goals][value]" id="inputNewValue" placeholder="Add value to your goal">
                         <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-success addNewValue"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
@@ -216,6 +215,33 @@ include 'header.php';
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" id="updateGoal" class="btn btn-primary">Save Changes</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Goal View Modal -->
+        <div class="modal fade" id="modalViewGoal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title" id="viewGoalTitle"></h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 class="titles" id="titleDescription">Description 📝️</h3>
+                    <p class="paragraf" id="viewGoalDescription"></p>
+                    <h3 class="titles" id="titlePrice">Price 💰️</h3>
+                    <p class="paragraf" id="viewGoalPrice"></p>
+                    <h3 class="titles" id="titleFinishDate">Final Date 📅️</h3>
+                    <p class="paragraf" id="viewGoalFinishDate"></p>
+                    <h3 class="titles" id="titleTotalMoney">Total Money 🤑️</h3>
+                    <p class="paragraf" id="viewGoalTotalMoney"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
                 </div>
             </div>
         </div>

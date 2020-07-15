@@ -74,10 +74,6 @@ if (!empty($_POST)) {
                             $totalMoney.';'.
                             $goalData['id_user'];
 
-                // echo "<pre>";
-                // print_r($return);
-                // echo "</pre>";die();
-
                 echo $return;
             break;
             case 'updateGoal':
@@ -88,27 +84,62 @@ if (!empty($_POST)) {
                 $total_money = (!empty($data['total_money'])) ? $data['total_money'] : 'null';
 
                 $parameters['conditions'] = ' id = '. $data['id'];
-                // Atualizacao de titulo
                 $parameters['data'] = 'title = "'. $data['title']. '"';
                 GoalsController::update($parameters);
-                // Atualizacao de description
                 $parameters['data'] = 'description = "' . $description. '"';
                 GoalsController::update($parameters);
-                // Atualizacao de price
                 $parameters['data'] = 'price = '. $price;
                 GoalsController::update($parameters);
-                // Atualizacao de finish_date
                 $parameters['data'] = 'finish_date = "'. $finish_date.'"';
                 GoalsController::update($parameters);
-                // Atualizacao de total_money
                 $parameters['data'] =   'total_money = '. $total_money;
                 GoalsController::update($parameters);
-                
 
-                
                 echo '200';
             break;
+            case 'addNewValue':
+                $currentValue = GoalsController::read(
+                    array(
+                        'select'        => ' total_money ',
+                        'conditions'    => ' WHERE id = '. $post['data']['id_goal']
+                    )
+                );
 
+                $totalValue = $currentValue[0]['total_money'] + $post['data']['addValue'];
+                // updata a coluna no banco
+                $parameters['data'] = ' total_money = '. $totalValue;
+                $parameters['conditions'] = ' id = '. $post['data']['id_goal'];
+
+                GoalsController::update($parameters);
+
+                echo '200';
+            break;
+            case 'viewGoal':
+                $goalInformations = GoalsController::read(
+                    array(
+                        'conditions' => ' WHERE id = '.$post['data']['id']
+                    )
+                );
+
+                $goalInformations = $goalInformations[0];
+
+                $description = (!empty($goalInformations['description'])) ? $goalInformations['description'] : '%@%';
+                $price       = (!empty($goalInformations['price']))       ? $goalInformations['price']       : '%@%';
+                $finish_date = (!empty($goalInformations['finish_date'])) ? $goalInformations['finish_date'] : '%@%';
+                $total_money = (!empty($goalInformations['total_money'])) ? $goalInformations['total_money'] : '%@%';
+
+                $return =   $goalInformations['title'].';'.
+                            $description.';'.
+                            $price.';'.
+                            $finish_date.';'.
+                            $total_money;
+
+                echo $return;
+
+                // echo "<pre>";
+                // print_r($return);
+                // echo "</pre>";die();
+            break;
             default:
             break;
         }
