@@ -57,12 +57,8 @@
 		public static function deleteGoal($id) {
 			GoalsController::delete($id);
 		}
-
-		public static function editItem() {
-			/* TO DO */
-        }
         
-        public static function listItens() {
+        public static function listGoals() {
             /* TO DO */
         }
 	}

@@ -61,7 +61,7 @@
 		*/
 		public static function update($parameters) {
 			require dirname(__DIR__). '/config.php';	
-		    mysqli_query($con,"UPDATE goals SET ".$parameters['data']." WHERE ".$parameters['conditions']);
+		    mysqli_query($conn,"UPDATE goals SET ".$parameters['data']." WHERE ".$parameters['conditions']);
 			if (mysqli_affected_rows($conn) == -1) {
 				return mysqli_error($conn);
 			} else {

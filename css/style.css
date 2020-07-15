@@ -79,13 +79,13 @@ h1 {
 .filters {
     float: right;
     width: 28%;
-    background: crimson;
+    background: rgb(223, 175, 185);
 }
 
 .percentage {
     text-align: center;
     font-family: 'Galada', cursive;
-    font-size: 90pt;
+    font-size: 80pt;
 }
 
 .card_buttons {

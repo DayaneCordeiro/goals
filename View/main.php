@@ -14,8 +14,7 @@ include 'header.php';
     </div>
 
     <div id="interface">
-        <h1 id="loginTitle">Hello <?php echo $username ?> 😎️</h1>
-        
+        <h1 id="loginTitle">Hello <?php echo $username ?> 😎️</h1>       
 
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalNewGoal">
             New Goal
@@ -38,7 +37,7 @@ include 'header.php';
         ?>
 
         <br><br>
-        <div class="goals" style="background: yellow">
+        <div class="goals" style="background: gray">
             <?php
             foreach ($goals as $goal) {
             ?>
@@ -49,11 +48,11 @@ include 'header.php';
                     <?php
                     $percentage = GoalsClass::calculatesPercentage($goal['id']);
                     ?>
-                    <h1 class="percentage"><?php echo $percentage.'%'; ?></h1>
+                    <h1 class="percentage"><?php echo number_format($percentage, 1).'%'; ?></h1>
                     <div class="card_buttons">
-                        <button type="button" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-danger"><i id="<?php echo $goal['id'];?>" class="fa fa-trash deleteGoal" aria-hidden="true"></i></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-primary viewGoal"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-warning editGoal" data-toggle="modal" data-target="#goalEditionModal"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-danger deleteGoal"><i id="<?php echo $goal['id'];?>" class="fa fa-trash" aria-hidden="true"></i></i></button>
                     </div>
                 </div>
             </div>
@@ -72,7 +71,7 @@ include 'header.php';
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title" id="exampleModalLabel">New Goal 🎯️</h1>
+                        <h1 class="modal-title">New Goal 🎯️</h1>
                         <button type="button" class="close closeGoal" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -157,6 +156,58 @@ include 'header.php';
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="button" id="saveItem" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Goal Edition Modal -->
+        <div class="modal fade" id="goalEditionModal" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title">Edit Goal ✍️</h1>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="frmEditGoal" method="post">
+                            <div class="form-group">
+                                <label for="inputTitle">Title</label>
+                                <input type="text" id="titleEdit" class="form-control" name="data[goals][title]" id="inputTitle" placeholder="Enter your goal title here" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputDescription">Description</label>
+                                <textarea class="form-control" id="descriptionEdit" name="data[goals][description]" id="inputDescription" rows="3"></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputPrice">Price</label>
+                                    <input type="number" id="priceEdit" class="form-control" name="data[goals][price]" id="inputPrice" placeholder="You can put the price here or in the sub-items">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputFinalDate">Final Date</label>
+                                    <input type="date" id="dateEdit" class="form-control" name="data[goals][finish_date]" id="inputFinalDate" title="Enter the date you want to finish the goal">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-9">
+                                    <label for="inputPrice">How much money do you already have?</label>
+                                    <input type="number" id="totalMoneyEdit" class="form-control" name="data[goals][total_money]" id="inputPrice" placeholder="This will help in calculating the percentage.">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="inputId">Id</label>
+                                    <input type="number" id="goalId" class="form-control" name="data[goals][id]" id="inputId">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" id="updateGoal" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>

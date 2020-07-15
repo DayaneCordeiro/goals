@@ -36,7 +36,7 @@ $(document).ready(function(){
     */
     $("#saveItem").on('click', function(e){
         e.preventDefault();
-        
+
         const form = $("#frmNewItem").serialize();
         const formId  = $(this).attr('id');
 
@@ -145,5 +145,75 @@ $(document).ready(function(){
     */
     $('.modal').on('hidden.bs.modal', function() {
         $('#frmNewItem')[0].reset();
+    });
+
+    /*
+    ** Functionality: Send Informations By Ajax to edit a Goal
+    ** Parameters: Event
+    ** Return: No return
+    */
+   $('.editGoal').on('click', function(e) {
+        e.preventDefault();
+        
+        var id = this.id;        
+        const formId  = 'editGoal';
+
+        $.ajax({
+            type: 'post',
+            url: "../actions.php",
+            data: {data: {formId: formId, id: id}
+            },
+            success: function(result){
+            if (result) {
+                var dataResult = result.split(';');
+                console.log(dataResult)
+
+                if (dataResult[4] != '%@%') {
+                    var date = dataResult[4].split(' ');
+                }
+
+                $('#titleEdit').val(dataResult[1]);
+                if (dataResult[2] != '%@%') $('#descriptionEdit').val(dataResult[2]);
+                if (dataResult[3] != '%@%') $('#priceEdit').val(dataResult[3]);
+                if (dataResult[4] != '%@%') $('#dateEdit').val(date[0]);
+                if (dataResult[5] != '%@%') $('#totalMoneyEdit').val(dataResult[5]);
+                $('#goalId').val(dataResult[0]);
+                $("#goalId").prop('disabled', true);
+            }
+            else {
+                alert('Error: Try again!')
+            }
+        }});
+    
+    });
+
+    /*
+    ** Functionality: Send Informations By Ajax to update a Goal
+    ** Parameters: Event
+    ** Return: No return
+    */
+    $("#updateGoal").on('click', function(e){
+        e.preventDefault();
+
+        $('#goalId').prop('disabled', false);
+
+        const form = $("#frmEditGoal").serialize();
+        const formId  = $(this).attr('id');
+
+        $.ajax({
+            type: 'post',
+            url: "../actions.php",
+            data: {data: {allData: form  , formId: formId}
+            },
+            success: function(result){
+            if (result) {
+                if (result == '200') {
+                    location.replace("main.php");
+                }
+            }
+            else {
+                alert('Creation error, try again.');
+            }
+        }});
     });
 });
