@@ -42,17 +42,24 @@ include 'header.php';
             foreach ($goals as $goal) {
             ?>
 
-            <div class="card mycard col-md-6" id="<?php echo $goal['id']; ?>">
-                <div class="card-header"><h3><?php echo $goal['title'] ?></h3></div>
+            <div class="card mycard" id="<?php echo $goal['id']; ?>">
+                <div class="card-header">
+                    <h3 style="float: left"><?php echo $goal['title'] ?></h3>
+                    <div class="card_buttons" style="float: right">
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-primary viewGoal"><i class="fa fa-eye" aria-hidden="true"></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-warning editGoal" data-toggle="modal" data-target="#goalEditionModal"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-danger deleteGoal"><i id="<?php echo $goal['id'];?>" class="fa fa-trash" aria-hidden="true"></i></i></button>
+                    </div>
+                </div>
                 <div class="card-body">
                     <?php
                     $percentage = GoalsClass::calculatesPercentage($goal['id']);
                     ?>
                     <h1 class="percentage"><?php echo number_format($percentage, 1).'%'; ?></h1>
-                    <div class="card_buttons">
-                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-primary viewGoal"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-warning editGoal" data-toggle="modal" data-target="#goalEditionModal"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-danger deleteGoal"><i id="<?php echo $goal['id'];?>" class="fa fa-trash" aria-hidden="true"></i></i></button>
+                    <div class="form-row">
+                        <label for="inputNewValue">Add new values to this Goal</label>
+                        <input type="number" class="form-control col-md-9" name="data[goals][value]" id="inputNewValue" placeholder="Add value to your goal">
+                        <button type="button" id="<?php echo $goal['id'];?>" class="btn btn-success addNewValue"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
