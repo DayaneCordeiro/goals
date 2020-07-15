@@ -2,7 +2,11 @@
 	require_once dirname(__DIR__). '/Controller/GoalItemController.php';
 	
 	class GoalItemClass extends GoalItemController{
-        
+        /*
+		** Functionality: Create new Item on database
+		** Parameters: An array with the data to be inserted
+		** Return: Success message
+		*/
         public static function createItem($parameters) {
             require_once dirname(__DIR__). '/config.php';
             require_once dirname(__DIR__). '/Controller/GoalsController.php';            
@@ -25,6 +29,11 @@
 		    return 'Success!';
         }
         
+        /*
+		** Functionality: Find the last Item on database
+		** Parameters: No parameters
+		** Return: No return
+		*/
         public static function findLast() {
             return GoalItemController::read(
                 array(
@@ -35,6 +44,11 @@
             );
         }
 
+        /*
+		** Functionality: Delete Itens based on Goal Id
+		** Parameters: Goal Id
+		** Return: No return
+		*/
 		public static function deleteItens($idGoal) {
             $itens = GoalItemController::read(
                 array(
@@ -53,13 +67,5 @@
             // print_r($itens);
             // echo "</pre>";die();
 		}
-
-		public static function editItem() {
-			/* TO DO */
-        }
-        
-        public static function listItens() {
-            /* TO DO */
-        }
 	}
 ?>

@@ -2,7 +2,11 @@
 	require_once dirname(__DIR__). '/Controller/UserController.php';
 	
 	class UserClass extends UserController{
-		
+		/*
+		** Functionality: Creates a new User on database
+		** Parameters: An array with the data to be inserted
+		** Return: Success message
+		*/
 		public static function registerUser($parameters) {
             require_once dirname(__DIR__). '/config.php';
             
@@ -26,11 +30,21 @@
 		    }
 		}
 
+		/*
+		** Functionality: Delete a user from database
+		** Parameters: User id
+		** Return: Sucess message
+		*/
 		public static function removerUser($id) {
 			UserController::delete($id);
-			return 'Usuário removido com sucesso';
+			return 'User removed successfully';
 		}
 
+		/*
+		** Functionality: Do user login
+		** Parameters: An array with the user data to be checked
+		** Return: Validation message
+		*/
 		public static function login($parameters) {
 			$query['select'] 		= ' * ';
 			$query['conditions'] 	= ' WHERE user.username = "'.$parameters['data']['user']['username'].'" AND user.password = "'. $parameters['data']['user']['password'].'"';
@@ -52,6 +66,11 @@
 			return 'Incorrect data, check and try again.';
 		}		
 
+		/*
+		** Functionality: Do user logoff
+		** Parameters: No parameters
+		** Return: No return
+		*/
         public static function logoff() {
             setcookie('id');
             setcookie('username');

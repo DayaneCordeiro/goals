@@ -2,7 +2,11 @@
 	require_once dirname(__DIR__). '/Controller/GoalsController.php';
 	
 	class GoalsClass extends GoalsController{
-        
+        /*
+		** Functionality: Create a new Goal on database
+		** Parameters: An array with the data to be inserted
+		** Return: Success message
+		*/
         public static function createGoal($parameters) {
             require_once dirname(__DIR__). '/config.php';
             require_once dirname(__DIR__). '/Model/GoalIdControllClass.php';
@@ -29,8 +33,12 @@
 		    return 'Success!';
         }
         
+        /*
+		** Functionality: Calculates the percentage based in how much the person has
+		** Parameters: Goal Id
+		** Return: Percentage value
+		*/
         public static function calculatesPercentage($id_goal) {
-            // preco total da goal + preco de cada sub-item
             require_once dirname(__DIR__). '/Controller/GoalItemController.php';
 
             $sub_itens = GoalItemController::read(
@@ -54,12 +62,13 @@
             return $percentage;
         }
 
+        /*
+		** Functionality: Delete the goal from database
+		** Parameters: Goal Id
+		** Return: No return
+		*/
 		public static function deleteGoal($id) {
 			GoalsController::delete($id);
 		}
-        
-        public static function listGoals() {
-            /* TO DO */
-        }
 	}
 ?>
